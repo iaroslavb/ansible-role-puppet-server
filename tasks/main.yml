@@ -1,0 +1,19 @@
+---
+# tasks file for ansible-role-puppet-server/
+
+- name: Download the Puppet platform release package and install it
+  apt:
+    deb: https://apt.puppetlabs.com/puppet5-release-xenial.deb
+
+- name: Install puppet server
+  apt:
+    name:         puppetserver
+    update_cache: yes
+    state:        latest
+
+- name: puppetserver service state
+  service:
+    name:     puppetserver
+    state:    started
+    enabled:  yes
+
